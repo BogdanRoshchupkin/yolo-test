@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детекция автомобилей с помощью YOLO</title>
+</head>
+<body>
+    <h1>Детекция автомобилей</h1>
+    <form action="/upload" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Обработать изображение</button>
+    </form>
+
+    {% if result %}
+    <h2>Результат обработки:</h2>
+    <img src="data:image/png;base64,{{ result }}" alt="Аннотированное изображение" style="max-width: 600px;">
+    {% if bboxes %}
+    <h3>Найденные Bounding Boxes:</h3>
+    <ul>
+        {% for bbox in bboxes %}
+        <li>{{ bbox }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endif %}
+</body>
+</html>
